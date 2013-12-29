@@ -201,6 +201,7 @@ abstract class AbstractFile implements FileInterface
      * 
      * @param type      $file
      * @param array     $header
+     * @return void
      */
     protected function addFilePartHeader($file, array $header)
     {
