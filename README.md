@@ -26,3 +26,6 @@ There are several fields where better have several files instead of one:
   * Reports before sending them off by email
   * Price list from different stores before import them to someone
   * Prepare data for parallel calculation to make possible spread data between servers or processes 
+
+### Example
+The example file can be found here: `/Example.php`
