@@ -8,7 +8,7 @@
 
 namespace SplitCSV\Rule;
 
-class RuleTest extends SplitCSV\BaseTest
+class RuleTest extends \SplitCSV\BaseTest
 {
     /**
      * @dataProvider providerFileSize
@@ -22,7 +22,6 @@ class RuleTest extends SplitCSV\BaseTest
         
         // create and decorate rule
         $rule = new FileSize($options);
-        $rule->setFile($file);
         
         // run and let check where it should be split
         $actual_parts = $this->splitBy($rule, $file);
@@ -34,22 +33,22 @@ class RuleTest extends SplitCSV\BaseTest
     /**
      * Split By Rule
      * 
-     * @param   SplitCSV\Rule\RuleInterface $rule
+     * @param   \SplitCSV\Rule\RuleInterface $rule
      * @param   source $file
      * @return integer - number of files that is going to br created
      */
-    protected function splitBy(SplitCSV\Rule\RuleInterface $rule, $file)
+    protected function splitBy(\SplitCSV\Rule\RuleInterface $rule, $file)
     {
         // run and let check where it should be split
         $result = 0;
-        while (($row = fgetcsv(file, null, ';', '"')) !== FALSE) {
-            if (!$rule->isSplit($row)) {
+        while (($row = fgetcsv($file, null, ';', '"')) !== FALSE) {
+            if ($rule->isSplit($row)) {
                 // new split file should be created
                 $result++;
             }
         }
         
-        return $result;
+        return ++$result;
     }
     
     public function providerFileSize()
@@ -58,7 +57,7 @@ class RuleTest extends SplitCSV\BaseTest
             array(array('size' => '100kb'), 'test-10000-rows-357kb.csv', 4),
             array(array('size' => '150Kb'), 'test-10000-rows-357kb.csv', 3),
             array(array('size' => '300kB'), 'test-10000-rows-357kb.csv', 2),
-            array(array('size' => '1Mb'),   'test-10000-rows-357kb.csv', 0)
+            array(array('size' => '1Mb'),   'test-10000-rows-357kb.csv', 1)
        );
     } 
 }
