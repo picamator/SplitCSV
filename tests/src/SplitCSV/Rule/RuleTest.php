@@ -11,7 +11,7 @@ namespace SplitCSV\Rule;
 class RuleTest extends \SplitCSV\BaseTest
 {
     /**
-     * @dataProvider providerFileSize
+     * @dataProvider     providerFileSize
      * @param array     $options
      * @param string    $source_path
      * @param integer   $expected_parts
@@ -31,7 +31,7 @@ class RuleTest extends \SplitCSV\BaseTest
     }
     
     /**
-     * @dataProvider providerNumberRow
+     * @dataProvider    providerNumberRow
      * @param array     $options
      * @param string    $source_path
      * @param integer   $expected_parts
@@ -61,7 +61,14 @@ class RuleTest extends \SplitCSV\BaseTest
     {
         // run and let check where it should be split
         $result = 0;
+        $i      = 0;
         while (($row = fgetcsv($file, null, ';', '"')) !== FALSE) {
+            $i++;
+            if($i == 1) {
+                // skip first row
+                continue;
+            }
+            
             if ($rule->isSplit($row)) {
                 // new split file should be created
                 $result++;
