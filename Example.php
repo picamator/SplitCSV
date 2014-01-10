@@ -21,7 +21,7 @@ $split  = new File($source_path, $destination_path);
 // choose rule "FileSize".
 $rule   = new Rule\FileSize(array('size' => '100kb'));
 // example of other rule
-// $rule   = new Rule\NumberRow(array('number_row' => 10);
+// $rule   = new Rule\NumberRow(array('number_row' => 10));
 
 // split file by rule
 $result  = $split->splitBy($rule);
