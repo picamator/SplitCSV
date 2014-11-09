@@ -49,7 +49,6 @@ class FileSize extends AbstractRule
      * 
      * @param array $options
      * @return self
-     * @throws Exception
      */
     public function setOptions(array $options)
     {

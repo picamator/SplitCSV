@@ -103,7 +103,6 @@ abstract class AbstractFile implements FileInterface
      * 
      * @param string $prefix
      * @return self
-     * @throws Exception
      */
     public function setPrefix($prefix)
     {
@@ -230,12 +229,12 @@ abstract class AbstractFile implements FileInterface
      * 
      * @param string $source_path
      * @return void
-     * @throws Exception
+     * @throws RuntimeException
      */
     protected function setSourcePath($source_path)
     {
         if(!file_exists($source_path)) {
-            throw new Exception('Error: CSV file as not found in destination "'.$source_path.'". Please correct path and try again.');
+            throw new RuntimeException('Error: CSV file as not found in destination "'.$source_path.'". Please correct path and try again.');
         }
         
         $this->source_path = $source_path;
@@ -246,12 +245,12 @@ abstract class AbstractFile implements FileInterface
      * 
      * @param string $destination_path
      * @return void
-     * @throws Exception
+     * @throws RuntimeException
      */
     protected function setDestinationPath($destination_path)
     {
          if(!file_exists($destination_path) || !is_writable($destination_path)) {
-            throw new Exception('Error: Wrong or not writable permission for destination path "'.$destination_path.'". Please correct path and try again.');
+            throw new RuntimeException('Error: Wrong or not writable permission for destination path "'.$destination_path.'". Please correct path and try again.');
          }
          
          $this->destination_path = $destination_path;

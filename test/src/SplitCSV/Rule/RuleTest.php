@@ -6,15 +6,17 @@
  * @license     http://opensource.org/licenses/BSD-3-Clause New BSD License
  */
 
-namespace SplitCSV\Rule;
+use SplitCSV\Rule\RuleInterface;
+use SplitCSV\Rule\FileSize;
+use SplitCSV\Rule\NumberRow;
 
-class RuleTest extends \SplitCSV\BaseTest
+class RuleTest extends BaseTest
 {
     /**
      * @dataProvider     providerFileSize
      * @param array     $options
      * @param string    $source_path
-     * @param integer   $expected_parts
+     * @param integer   $exptected_parts
      */
     public function testFileSize(array $options, $source_path, $exptected_parts)
     {
@@ -34,7 +36,7 @@ class RuleTest extends \SplitCSV\BaseTest
      * @dataProvider    providerNumberRow
      * @param array     $options
      * @param string    $source_path
-     * @param integer   $expected_parts
+     * @param integer   $exptected_parts
      */
     public function testNumberRow(array $options, $source_path, $exptected_parts)
     {
@@ -53,11 +55,11 @@ class RuleTest extends \SplitCSV\BaseTest
     /**
      * Split By Rule
      * 
-     * @param   \SplitCSV\Rule\RuleInterface $rule
+     * @param   RuleInterface $rule
      * @param   source $file
      * @return integer - number of files that is going to br created
      */
-    protected function splitBy(\SplitCSV\Rule\RuleInterface $rule, $file)
+    protected function splitBy(RuleInterface $rule, $file)
     {
         // run and let check where it should be split
         $result = 0;

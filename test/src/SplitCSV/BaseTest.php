@@ -6,16 +6,14 @@
  * @license     http://opensource.org/licenses/BSD-3-Clause New BSD License
  */
 
-namespace SplitCSV;
-
-class BaseTest extends \PHPUnit_Framework_TestCase 
+abstract class BaseTest extends PHPUnit_Framework_TestCase 
 {
     /**
      * Path to the data folder
      * 
      * @var string 
      */
-    protected $data_path = './data/';
+    protected $data_path = './test/data/';
     
     /**
      * Template methods runs once for each test method
@@ -34,6 +32,6 @@ class BaseTest extends \PHPUnit_Framework_TestCase
      */
     protected function getDataPath($path)
     {        
-        return realpath($this->data_path.$path);
+        return realpath($this->data_path . $path);
     }
 }

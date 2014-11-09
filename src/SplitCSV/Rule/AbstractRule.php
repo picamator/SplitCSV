@@ -7,6 +7,7 @@
  */
 
 namespace SplitCSV\Rule;
+use SplitCSV\RuntimeException;
 
 abstract class AbstractRule implements RuleInterface
 {
@@ -30,7 +31,7 @@ abstract class AbstractRule implements RuleInterface
      * 
      * @param array $options
      * @return self
-     * @throws Exception
+     * @throws RuntimeException
      */
     public function setOptions(array $options)
     { 
@@ -42,7 +43,7 @@ abstract class AbstractRule implements RuleInterface
                 
         $required = array_diff_key($this->options, $options);        
         if(!empty($required)) {
-            throw new Exception('Error: Incorrect options for Split Rule. Option(s) "'.implode(', ', array_keys($required)).'" did not set. Please set correct data and try again.');
+            throw new RuntimeException('Error: Incorrect options for Split Rule. Option(s) "'.implode(', ', array_keys($required)).'" did not set. Please set correct data and try again.');
         } 
           
         $this->options = $options;

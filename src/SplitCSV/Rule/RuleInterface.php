@@ -20,7 +20,6 @@ interface RuleInterface
      * 
      * @param array $options
      * @return self
-     * @throws Exception
      */
     public function setOptions(array $options); 
      
@@ -31,4 +30,4 @@ interface RuleInterface
      * @return boolean
      */
     public function isSplit(array $row);
-} 
+}
